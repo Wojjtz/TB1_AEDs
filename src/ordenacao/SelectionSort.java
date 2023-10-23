@@ -4,6 +4,8 @@
  */
 package ordenacao;
 
+import java.util.Random;
+
 /**
  *
  * @author 0057149
@@ -11,11 +13,16 @@ package ordenacao;
 public class SelectionSort {
     public static void main(String[] args) {
         int menorI, aux;
-        int[] vet = {1,4,5,9,8,3,7};
+        int[] vet = new int[10000];
+        Random rnd = new Random(17);
+        for (int i = 0; i < vet.length; i++) {
+            vet[i] = rnd.nextInt(99999);
+        }
         
-        for (int i = 0; i < (vet.length - 1); i++) {
+        long startTime = System.nanoTime();
+        for (int i = 0; i < (vet.length - 1); i++) { //O9n)
             menorI = i;
-            for (int j = (i + 1); j < vet.length; j++) {
+            for (int j = (i + 1); j < vet.length; j++) {//O(n)
                 if(vet[j] < vet[menorI]){
                     menorI = j;
                 }
@@ -26,9 +33,9 @@ public class SelectionSort {
                 vet[menorI] = aux;
             }
         }
+        long endTime = System.nanoTime();
+        long timeElapsed = endTime - startTime;
         
-        for (int i = 0; i < vet.length; i++) {
-            System.out.print(vet[i] + ", ");
-        }
+        System.out.println(timeElapsed);
     }
 }
